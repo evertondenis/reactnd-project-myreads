@@ -1,11 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { StyledTitle } from './styled'
 
-const Title = ({ text }) => {
+const Title = (props) => {
+  const { text } = props
+
   return (
-    <div className="list-books-title">
+    <StyledTitle>
       <h1>{text}</h1>
-    </div>
+    </StyledTitle>
   )
 }
 
