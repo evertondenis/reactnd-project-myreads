@@ -4,7 +4,8 @@ import * as BooksAPI from './BooksAPI'
 
 import Search from './components/Search'
 import Title from './components/Title'
-import Book from './components/Book'
+import BookShelf from './components/BookShelf'
+
 import './App.css'
 
 const currentlyReading = [
@@ -71,56 +72,18 @@ class BooksApp extends Component {
 
             <div className="list-books-content">
               <div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Currently Reading</h2>
-                  <div className="bookshelf-books">
-                    <ol className="books-grid">
-                      {currentlyReading.map((book, index) => (
-                        <li key={index}>
-                          <Book
-                            image={book.image}
-                            title={book.title}
-                            author={book.author}
-                          />
-                        </li>
-                      ))}
-                    </ol>
-                  </div>
-                </div>
-
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Want to Read</h2>
-                  <div className="bookshelf-books">
-                    <ol className="books-grid">
-                      {wantToRead.map((book, index) => (
-                        <li key={index}>
-                          <Book
-                            image={book.image}
-                            title={book.title}
-                            author={book.author}
-                          />
-                        </li>
-                      ))}
-                    </ol>
-                  </div>
-                </div>
-
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Read</h2>
-                  <div className="bookshelf-books">
-                    <ol className="books-grid">
-                      {read.map((book, index) => (
-                        <li key={index}>
-                          <Book
-                            image={book.image}
-                            title={book.title}
-                            author={book.author}
-                          />
-                        </li>
-                      ))}
-                    </ol>
-                  </div>
-                </div>
+                <BookShelf
+                  title="Currently Reading"
+                  books={currentlyReading}
+                />
+                <BookShelf
+                  title="Want to Read"
+                  books={wantToRead}
+                />
+                <BookShelf
+                  title="Read"
+                  books={read}
+                />
               </div>
             </div>
             <div className="open-search">
