@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Route, Link } from 'react-router-dom'
-// import * as BooksAPI from './BooksAPI'
+import * as BooksAPI from './BooksAPI'
 
 import Search from './components/Search'
 import Title from './components/Title'
@@ -52,6 +52,12 @@ const read = [
 ]
 
 class BooksApp extends Component {
+
+  componentDidMount() {
+    BooksAPI.getAll().then((books) => {
+      console.log(books)
+    })
+  }
 
   render() {
     return (
