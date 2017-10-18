@@ -13,9 +13,9 @@ const BookShelf = (props) => {
           {books.map((book, index) => (
             <li key={index}>
               <Book
-                image={book.image}
+                image={book.imageLinks.thumbnail}
                 title={book.title}
-                author={book.author}
+                author={book.authors[0]}
               />
             </li>
           ))}
