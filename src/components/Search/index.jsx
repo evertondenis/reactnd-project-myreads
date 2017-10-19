@@ -1,24 +1,39 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import * as BooksAPI from '../../BooksAPI'
+import * as BooksAPI from '../../provider/BooksAPI'
+import { debounce } from 'throttle-debounce'
 import Book from '../Book'
 
 class Search extends Component {
 
-  state = {
-    listBooks: []
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      listBooks: []
+    }
+
+    this.searchBooks = debounce(500, this.searchBooks.bind(this))
+  }
+
+  componentDidMount() {
+    this.searchInput.focus()
   }
 
   searchBooks(query) {
-    BooksAPI.search(query).then((books) => {
-      console.log(books)
-
-      const listBooks = books
-      this.setState({ listBooks })
-    })
+    if (query === '') {
+      this.setState({ listBooks: [] })
+    } else {
+      BooksAPI.search(query, 5).then((books) => {
+        const listBooks = books
+        this.setState({ listBooks })
+      })
+    }
   }
 
   render() {
+    const books = this.state.listBooks
+
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -27,6 +42,7 @@ class Search extends Component {
             <input
               type="text"
               placeholder="Search by title or author"
+              ref={(input) => { this.searchInput = input }}
               onChange={(event) => this.searchBooks(event.target.value)}
             />
 
@@ -34,8 +50,8 @@ class Search extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {this.state.listBooks &&
-              this.state.listBooks.map((book, index) => (
+            {books &&
+              books.map((book, index) => (
                 <li key={index}>
                   <Book
                     image={book.imageLinks.thumbnail}

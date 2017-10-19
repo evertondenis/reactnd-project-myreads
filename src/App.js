@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Route, Link } from 'react-router-dom'
-import * as BooksAPI from './BooksAPI'
+import * as BooksAPI from './provider/BooksAPI'
 
 import Search from './components/Search'
 import Title from './components/Title'
@@ -9,24 +9,22 @@ import BookShelf from './components/BookShelf'
 import './App.css'
 
 class BooksApp extends Component {
+  constructor(props) {
+    super(props)
 
-  state = {
-    currentlyReading: [],
-    wantToRead: [],
-    read: []
+    this.state = {
+      currentlyReading: [],
+      wantToRead: [],
+      read: []
+    }
   }
 
   componentDidMount() {
 
     BooksAPI.getAll().then((books) => {
-      console.log(books)
-     const currentlyReading = books.filter(book => book.shelf === 'currentlyReading')
-     const wantToRead = books.filter(book => book.shelf === 'wantToRead')
-     const read = books.filter(book => book.shelf === 'read')
-
-      this.setState({ currentlyReading })
-      this.setState({ wantToRead })
-      this.setState({ read })
+      this.setState({ currentlyReading: books.filter(book => book.shelf === 'currentlyReading') })
+      this.setState({ wantToRead: books.filter(book => book.shelf === 'wantToRead') })
+      this.setState({ read: books.filter(book => book.shelf === 'read') })
     })
   }
 
