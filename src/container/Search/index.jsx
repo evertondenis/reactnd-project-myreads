@@ -10,7 +10,9 @@ class Search extends Component {
     super(props)
 
     this.state = {
-      listBooks: []
+      listBooks: [],
+      showloader: false,
+      noResults: false
     }
 
     this.searchBooks = debounce(500, this.searchBooks.bind(this))
@@ -22,11 +24,15 @@ class Search extends Component {
 
   searchBooks(query) {
     if (query === '') {
+      this.setState({ noResults: false })
       this.setState({ listBooks: [] })
     } else {
+      this.setState({ showloader: true })
       BooksAPI.search(query).then((books) => {
         console.log(books)
         const listBooks = books
+        this.setState({ noResults: true })
+        this.setState({ showloader: false })
         this.setState({ listBooks })
       })
     }
@@ -51,8 +57,10 @@ class Search extends Component {
           </div>
         </div>
         <div className="search-books-results">
+          {this.state.showloader && <div className="preloader"><span className="loading">loading...</span></div>}
           <ol className="books-grid">
-            {books &&
+            {this.state.noResults && <h2>No results</h2>}
+            {(books.length > 0) &&
               books.map((book, index) => (
                 <li key={index}>
                   <Book

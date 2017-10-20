@@ -16,7 +16,8 @@ class BooksApp extends Component {
       books: [],
       currentlyReading: [],
       wantToRead: [],
-      read: []
+      read: [],
+      showloader: true
     }
 
     this.changeBookShelf = this.changeBookShelf.bind(this)
@@ -25,6 +26,7 @@ class BooksApp extends Component {
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
       console.log(books)
+      this.setState({ showloader: false })
       this.setState({ currentlyReading: books.filter(book => book.shelf === 'currentlyReading') })
       this.setState({ wantToRead: books.filter(book => book.shelf === 'wantToRead') })
       this.setState({ read: books.filter(book => book.shelf === 'read') })
@@ -36,11 +38,13 @@ class BooksApp extends Component {
     console.log('Shelf: ', shelf.target.value)
 
     const newShelf = shelf.target.value
+    this.setState({ showloader: true })
 
     BooksAPI.update(book, newShelf)
       .then(() => {
         BooksAPI.getAll().then((books) => {
           console.log(books)
+          this.setState({ showloader: false })
           this.setState({ currentlyReading: books.filter(book => book.shelf === 'currentlyReading') })
           this.setState({ wantToRead: books.filter(book => book.shelf === 'wantToRead') })
           this.setState({ read: books.filter(book => book.shelf === 'read') })
@@ -58,6 +62,7 @@ class BooksApp extends Component {
 
         <Route exact path='/' render={() => (
           <div className="list-books">
+            {this.state.showloader && <div className="preloader"><span className="loading">loading...</span></div>}
 
             <Title text="MyReads" />
 
