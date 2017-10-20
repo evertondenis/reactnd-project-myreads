@@ -2,7 +2,7 @@ import React from 'react'
 import Book from '../Book'
 
 
-const BookShelf = (props) => {
+const Shelf = (props) => {
   const { title, books, updateShelf } = props
 
   return (
@@ -16,7 +16,8 @@ const BookShelf = (props) => {
                 id={book.id}
                 image={book.imageLinks.thumbnail}
                 title={book.title}
-                author={book.authors[0]}
+                author={book.authors ? book.authors.join(', ') : 'Unknown Author'}
+                shelf={book.shelf}
                 updateShelf={updateShelf}
               />
             </li>
@@ -27,4 +28,4 @@ const BookShelf = (props) => {
   )
 }
 
-export default BookShelf
+export default Shelf

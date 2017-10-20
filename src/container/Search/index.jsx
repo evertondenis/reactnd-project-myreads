@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from '../../provider/BooksAPI'
 import { debounce } from 'throttle-debounce'
-import Book from '../Book'
+import Book from '../../components/Book'
 
 class Search extends Component {
 
@@ -56,9 +56,11 @@ class Search extends Component {
               books.map((book, index) => (
                 <li key={index}>
                   <Book
+                    id={book.id}
                     image={book.imageLinks.thumbnail}
                     title={book.title}
                     author={book.authors}
+                    shelf={book.shelf}
                     updateShelf={updateShelf}
                   />
                 </li>

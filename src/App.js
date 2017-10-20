@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { Route, Link } from 'react-router-dom'
 import * as BooksAPI from './provider/BooksAPI'
 
-import Search from './components/Search'
 import Title from './components/Title'
-import BookShelf from './components/BookShelf'
+import BookShelf from './components/Shelf'
+import Search from './container/Search'
 
 import './App.css'
 
@@ -34,14 +34,18 @@ class BooksApp extends Component {
   changeBookShelf(book, shelf) {
     console.log('ID: ', book)
     console.log('Shelf: ', shelf.target.value)
-    BooksAPI.update(book, shelf)
-      .then(
+
+    const newShelf = shelf.target.value
+
+    BooksAPI.update(book, newShelf)
+      .then(() => {
         BooksAPI.getAll().then((books) => {
+          console.log(books)
           this.setState({ currentlyReading: books.filter(book => book.shelf === 'currentlyReading') })
           this.setState({ wantToRead: books.filter(book => book.shelf === 'wantToRead') })
           this.setState({ read: books.filter(book => book.shelf === 'read') })
         })
-      )
+      })
   }
 
 
