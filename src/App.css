@@ -5,8 +5,8 @@ body {
   line-height: 1.5;
 }
 body, .app {
-  /* background-color: #c54e49;
-  background-image: linear-gradient(180deg, #cf163d, #ffb042 ); */
+  /* background-color: #c54e49; */
+  /* background-image: linear-gradient(180deg, #cf163d, #ffb042 ); */
   background: linear-gradient(135deg,#7c0053 0,#fa3373 100%);
 
   /* cf163d
@@ -16,6 +16,24 @@ body, .app {
 }
 
 /* main page */
+/* .route-wrapper {
+  position: relative;
+}
+
+.route-wrapper > div {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.route-wrapper > div > .list-books .open-search {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+} */
+
 .bookshelf-title {
   text-align: right;
   color: white;
@@ -46,6 +64,7 @@ body, .app {
   right: 25px;
   bottom: 25px;
 }
+
 .open-search a {
   display: block;
   width: 50px;
@@ -61,6 +80,10 @@ body, .app {
 }
 
 /* search page */
+
+.search-books {
+  height: 53px;
+}
 
 .search-books-bar {
   position: fixed;

@@ -24,7 +24,8 @@ class Search extends Component {
     if (query === '') {
       this.setState({ listBooks: [] })
     } else {
-      BooksAPI.search(query, 5).then((books) => {
+      BooksAPI.search(query).then((books) => {
+        console.log(books)
         const listBooks = books
         this.setState({ listBooks })
       })
@@ -32,6 +33,7 @@ class Search extends Component {
   }
 
   render() {
+    const { updateShelf } = this.props
     const books = this.state.listBooks
 
     return (
@@ -57,6 +59,7 @@ class Search extends Component {
                     image={book.imageLinks.thumbnail}
                     title={book.title}
                     author={book.authors}
+                    updateShelf={updateShelf}
                   />
                 </li>
               ))

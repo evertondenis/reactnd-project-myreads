@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Book = (props) => {
-  const { image, title, author } = props
+  const { id, image, title, author, updateShelf } = props
 
   const style = {
     width: '128px',
@@ -16,7 +16,7 @@ const Book = (props) => {
           style={style}>
         </div>
         <div className="book-shelf-changer">
-          <select>
+          <select onChange={(input)=> updateShelf({id: id}, input)}>
             <option value="none" disabled>Move to...</option>
             <option value="currentlyReading">Currently Reading</option>
             <option value="wantToRead">Want to Read</option>
