@@ -6,6 +6,7 @@ import Title from './components/Title'
 import BookShelf from './components/Shelf'
 import Search from './container/Search'
 
+import loading from './icons/rings.svg'
 import './App.css'
 
 class BooksApp extends Component {
@@ -62,7 +63,13 @@ class BooksApp extends Component {
 
         <Route exact path='/' render={() => (
           <div className="list-books">
-            {this.state.showloader && <div className="preloader"><span className="loading">loading...</span></div>}
+            {this.state.showloader &&
+              <div className="preloader">
+                <span className="loading">
+                  <img src={loading} alt="loading..." />
+                </span>
+              </div>
+            }
 
             <Title text="MyReads" />
 

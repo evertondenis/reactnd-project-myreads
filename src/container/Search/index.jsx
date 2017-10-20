@@ -4,6 +4,8 @@ import * as BooksAPI from '../../provider/BooksAPI'
 import { debounce } from 'throttle-debounce'
 import Book from '../../components/Book'
 
+import loading from '../../icons/rings.svg'
+
 class Search extends Component {
 
   constructor(props) {
@@ -57,7 +59,13 @@ class Search extends Component {
           </div>
         </div>
         <div className="search-books-results">
-          {this.state.showloader && <div className="preloader"><span className="loading">loading...</span></div>}
+          {this.state.showloader &&
+            <div className="preloader">
+              <span className="loading">
+                <img src={loading} alt="loading..." />
+              </span>
+            </div>
+          }
           <ol className="books-grid">
             {this.state.noResults && <h2>No results</h2>}
             {(books.length > 0) &&
