@@ -14,7 +14,7 @@ const Shelf = (props) => {
             <li key={index}>
               <Book
                 id={book.id}
-                image={book.imageLinks.thumbnail}
+                image={book.imageLinks ? book.imageLinks.thumbnail : 'no-image'}
                 title={book.title}
                 author={book.authors ? book.authors.join(', ') : 'Unknown Author'}
                 shelf={book.shelf}

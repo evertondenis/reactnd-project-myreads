@@ -25,16 +25,12 @@ class Search extends Component {
 
   searchBooks(query) {
     if (query === '') {
-      this.setState({ noResults: false })
-      this.setState({ listBooks: [] })
+      this.setState({ noResults: false, listBooks: [] })
     } else {
       this.setState({ showloader: true })
       BooksAPI.search(query).then((books) => {
-        console.log(books)
         const listBooks = books
-        this.setState({ noResults: false })
-        this.setState({ showloader: false })
-        this.setState({ listBooks })
+        this.setState({ noResults: false, showloader: false, listBooks })
       })
     }
   }
@@ -68,7 +64,7 @@ class Search extends Component {
                 <li key={index}>
                   <Book
                     id={book.id}
-                    image={book.imageLinks.thumbnail}
+                    image={book.imageLinks ? book.imageLinks.thumbnail : 'no-image'}
                     title={book.title}
                     author={book.authors}
                     shelf={book.shelf}

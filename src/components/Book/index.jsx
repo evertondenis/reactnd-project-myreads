@@ -1,12 +1,15 @@
 import React from 'react'
+import noimage from './no-image.png'
 
 const Book = (props) => {
   const { id, image, title, author, shelf, updateShelf } = props
 
+  let thumb = image !== 'no-image' ? '#7c0053 url(' + image + ')' : '#7c0053 url(' + noimage + ') no-repeat 50%'
+
   const style = {
     width: '128px',
-    height: '193px',
-    backgroundImage: 'url(' + image + ')',
+    height: '190px',
+    background: thumb,
   }
 
   return (

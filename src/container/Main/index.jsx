@@ -4,7 +4,7 @@ import * as BooksAPI from '../../core/provider/BooksAPI'
 
 import Preloader from '../../components/Preloader'
 import Title from '../../components/Title'
-import BookShelf from '../../components/Shelf'
+import Shelf from '../../components/Shelf'
 import Search from '../../container/Search'
 
 import './style.css'
@@ -21,17 +21,12 @@ class Main extends Component {
       showloader: true
     }
 
+    this.renderListBooks = this.renderListBooks.bind(this)
     this.changeBookShelf = this.changeBookShelf.bind(this)
   }
 
   componentDidMount() {
-    BooksAPI.getAll().then((books) => {
-      console.log(books)
-      this.setState({ showloader: false })
-      this.setState({ currentlyReading: books.filter(book => book.shelf === 'currentlyReading') })
-      this.setState({ wantToRead: books.filter(book => book.shelf === 'wantToRead') })
-      this.setState({ read: books.filter(book => book.shelf === 'read') })
-    })
+    this.renderListBooks()
   }
 
   changeBookShelf(book, shelf) {
@@ -43,14 +38,19 @@ class Main extends Component {
 
     BooksAPI.update(book, newShelf)
       .then(() => {
-        BooksAPI.getAll().then((books) => {
-          console.log(books)
-          this.setState({ showloader: false })
-          this.setState({ currentlyReading: books.filter(book => book.shelf === 'currentlyReading') })
-          this.setState({ wantToRead: books.filter(book => book.shelf === 'wantToRead') })
-          this.setState({ read: books.filter(book => book.shelf === 'read') })
-        })
+        this.renderListBooks()
       })
+  }
+
+  renderListBooks() {
+    BooksAPI.getAll().then((books) => {
+      this.setState({
+        showloader: false,
+        currentlyReading: books.filter(book => book.shelf === 'currentlyReading'),
+        wantToRead: books.filter(book => book.shelf === 'wantToRead'),
+        read: books.filter(book => book.shelf === 'read')
+      })
+    })
   }
 
 
@@ -69,17 +69,17 @@ class Main extends Component {
 
             <div className="list-books-content">
               <div>
-                <BookShelf
+                <Shelf
                   title="Currently Reading"
                   books={this.state.currentlyReading}
                   updateShelf={this.changeBookShelf}
                 />
-                <BookShelf
+                <Shelf
                   title="Want to Read"
                   books={this.state.wantToRead}
                   updateShelf={this.changeBookShelf}
                 />
-                <BookShelf
+                <Shelf
                   title="Read"
                   books={this.state.read}
                   updateShelf={this.changeBookShelf}
