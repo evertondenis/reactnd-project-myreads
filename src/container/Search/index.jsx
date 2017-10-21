@@ -29,7 +29,8 @@ class Search extends Component {
       this.setState({ showloader: true })
       BooksAPI.search(query).then((books) => {
         const listBooks = books
-        this.setState({ noResults: false, showloader: false, listBooks })
+        const noResults = listBooks.length ? false : true
+        this.setState({ noResults , showloader: false, listBooks })
       })
     }
   }
@@ -47,7 +48,7 @@ class Search extends Component {
           <Preloader condition={loader} />
 
           <ol className="books-grid">
-            {this.state.noResults && <h2>No results</h2>}
+            {this.state.noResults && <h2>No results ☹</h2>}
 
             {(books.length > 0) &&
               books.map((book, index) => (
