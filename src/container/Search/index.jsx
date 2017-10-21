@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import * as BooksAPI from '../../provider/BooksAPI'
+import * as BooksAPI from '../../core/provider/BooksAPI'
 import { debounce } from 'throttle-debounce'
 import Book from '../../components/Book'
-
-import loading from '../../icons/rings.svg'
+import Preloader from '../../components/Preloader'
 
 class Search extends Component {
 
@@ -33,7 +32,7 @@ class Search extends Component {
       BooksAPI.search(query).then((books) => {
         console.log(books)
         const listBooks = books
-        this.setState({ noResults: true })
+        this.setState({ noResults: false })
         this.setState({ showloader: false })
         this.setState({ listBooks })
       })
@@ -59,15 +58,11 @@ class Search extends Component {
           </div>
         </div>
         <div className="search-books-results">
-          {this.state.showloader &&
-            <div className="preloader">
-              <span className="loading">
-                <img src={loading} alt="loading..." />
-              </span>
-            </div>
-          }
+          <Preloader condition={this.state.showloader} />
+
           <ol className="books-grid">
             {this.state.noResults && <h2>No results</h2>}
+
             {(books.length > 0) &&
               books.map((book, index) => (
                 <li key={index}>

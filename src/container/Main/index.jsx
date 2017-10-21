@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import { Route, Link } from 'react-router-dom'
-import * as BooksAPI from './provider/BooksAPI'
+import * as BooksAPI from '../../core/provider/BooksAPI'
 
-import Title from './components/Title'
-import BookShelf from './components/Shelf'
-import Search from './container/Search'
+import Preloader from '../../components/Preloader'
+import Title from '../../components/Title'
+import BookShelf from '../../components/Shelf'
+import Search from '../../container/Search'
 
-import loading from './icons/rings.svg'
-import './App.css'
+import './style.css'
 
-class BooksApp extends Component {
+class Main extends Component {
   constructor(props) {
     super(props)
 
@@ -63,13 +63,7 @@ class BooksApp extends Component {
 
         <Route exact path='/' render={() => (
           <div className="list-books">
-            {this.state.showloader &&
-              <div className="preloader">
-                <span className="loading">
-                  <img src={loading} alt="loading..." />
-                </span>
-              </div>
-            }
+            <Preloader condition={this.state.showloader} />
 
             <Title text="MyReads" />
 
@@ -102,4 +96,4 @@ class BooksApp extends Component {
   }
 }
 
-export default BooksApp
+export default Main

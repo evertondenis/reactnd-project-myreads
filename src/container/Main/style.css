@@ -15,23 +15,6 @@ body, .app {
   9b0067*/
 }
 
-.preloader {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255, 255, 255, 0.2);
-  z-index: 9998;
-}
-.loading {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 28px;
-  height: 28px;
-  margin: 0 0 0 -14px;
-}
 /* main page */
 /* .route-wrapper {
   position: relative;
@@ -88,7 +71,7 @@ body, .app {
   height: 50px;
   border-radius: 50%;
   background: yellow;
-  background-image: url('./icons/add.svg');
+  background-image: url('../../core/assets/icons/add.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 28px;
@@ -130,7 +113,7 @@ body, .app {
   width: 50px;
   height: 53px;
   background: white;
-  background-image: url('./icons/arrow-back.svg');
+  background-image: url('../../core/assets/icons/arrow-back.svg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: 28px;
@@ -186,7 +169,7 @@ body, .app {
   height: 40px;
   border-radius: 50%;
   background: #60ac5d;
-  background-image: url('./icons/arrow-drop-down.svg');
+  background-image: url('../../core/assets/icons/arrow-drop-down.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 20px;
