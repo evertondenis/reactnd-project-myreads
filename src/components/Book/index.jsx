@@ -1,10 +1,13 @@
 import React from 'react'
-import noimage from './no-image.png'
+import PropTypes from 'prop-types'
+
+import { StyledBook } from './styled.js'
+import noimage from './assets/no-image.png'
 
 const Book = (props) => {
   const { id, image, title, author, shelf, updateShelf } = props
 
-  let thumb = image !== 'no-image'
+  let thumb = image && image !== 'no-image'
               ? '#7c0053 url(' + image + ')'
               : 'black url(' + noimage + ') no-repeat 50%'
 
@@ -15,7 +18,7 @@ const Book = (props) => {
   }
 
   return (
-    <div className="book">
+    <StyledBook>
       <div className="book-top">
         <div className="book-cover" style={style} />
         <div className="book-shelf-changer">
@@ -30,8 +33,17 @@ const Book = (props) => {
       </div>
       <div className="book-title">{title}</div>
       <div className="book-authors">{author}</div>
-    </div>
+    </StyledBook>
   )
+}
+
+Book.propTypes = {
+  image: PropTypes.string,
+  title: PropTypes.string,
+  author: PropTypes.string,
+  id: PropTypes.any.isRequired,
+  shelf: PropTypes.string,
+  updateShelf: PropTypes.func.isRequired
 }
 
 export default Book

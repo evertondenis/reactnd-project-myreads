@@ -1,6 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { StyledPreloader } from './styled'
-import loading from './rings.svg'
+import loading from './assets/rings.svg'
 
 const Preloader = (props) => {
   const { condition } = props
@@ -16,6 +17,10 @@ const Preloader = (props) => {
       }
     </div>
   )
+}
+
+Preloader.propTypes = {
+  condition: PropTypes.bool.isRequired
 }
 
 export default Preloader

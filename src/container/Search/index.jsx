@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import * as BooksAPI from '../../core/provider/BooksAPI'
 import { debounce } from 'throttle-debounce'
 import Book from '../../components/Book'
 import Preloader from '../../components/Preloader'
+import InputSearch from '../../components/InputSearch'
+
+import './style.css'
 
 class Search extends Component {
 
@@ -17,10 +20,6 @@ class Search extends Component {
     }
 
     this.searchBooks = debounce(500, this.searchBooks.bind(this))
-  }
-
-  componentDidMount() {
-    this.searchInput.focus()
   }
 
   searchBooks(query) {
@@ -41,18 +40,8 @@ class Search extends Component {
 
     return (
       <div className="search-books">
-        <div className="search-books-bar">
-          <Link className='close-search' to='/'>Close</Link>
-          <div className="search-books-input-wrapper">
-            <input
-              type="text"
-              placeholder="Search by title or author"
-              ref={(input) => { this.searchInput = input }}
-              onChange={(event) => this.searchBooks(event.target.value)}
-            />
+        <InputSearch onChange={this.searchBooks} />
 
-          </div>
-        </div>
         <div className="search-books-results">
           <Preloader condition={this.state.showloader} />
           <Preloader condition={loader} />
@@ -67,7 +56,7 @@ class Search extends Component {
                     id={book.id}
                     image={book.imageLinks ? book.imageLinks.thumbnail : 'no-image'}
                     title={book.title}
-                    author={book.authors}
+                    author={book.authors ? book.authors.join(', ') : 'Unknown Author'}
                     shelf={book.shelf}
                     updateShelf={updateShelf}
                   />
@@ -79,6 +68,11 @@ class Search extends Component {
       </div>
     )
   }
+}
+
+Search.propTypes = {
+  loader: PropTypes.bool,
+  updateShelf: PropTypes.func.isRequired
 }
 
 export default Search
