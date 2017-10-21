@@ -58,7 +58,7 @@ class Main extends Component {
     return (
       <div className="app">
         <Route path='/search' render={() => (
-          <Search updateShelf={this.changeBookShelf} />
+          <Search loader={this.state.showloader} updateShelf={this.changeBookShelf} />
         )}/>
 
         <Route exact path='/' render={() => (

@@ -36,7 +36,7 @@ class Search extends Component {
   }
 
   render() {
-    const { updateShelf } = this.props
+    const { loader, updateShelf } = this.props
     const books = this.state.listBooks
 
     return (
@@ -55,6 +55,7 @@ class Search extends Component {
         </div>
         <div className="search-books-results">
           <Preloader condition={this.state.showloader} />
+          <Preloader condition={loader} />
 
           <ol className="books-grid">
             {this.state.noResults && <h2>No results</h2>}

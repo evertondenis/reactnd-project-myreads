@@ -4,7 +4,9 @@ import noimage from './no-image.png'
 const Book = (props) => {
   const { id, image, title, author, shelf, updateShelf } = props
 
-  let thumb = image !== 'no-image' ? '#7c0053 url(' + image + ')' : '#7c0053 url(' + noimage + ') no-repeat 50%'
+  let thumb = image !== 'no-image'
+              ? '#7c0053 url(' + image + ')'
+              : 'black url(' + noimage + ') no-repeat 50%'
 
   const style = {
     width: '128px',
@@ -15,9 +17,7 @@ const Book = (props) => {
   return (
     <div className="book">
       <div className="book-top">
-        <div className="book-cover"
-          style={style}>
-        </div>
+        <div className="book-cover" style={style} />
         <div className="book-shelf-changer">
           <select onChange={(input)=> updateShelf({id: id}, input)} defaultValue={shelf || 'none'}>
             <option value="none" disabled>Move to...</option>

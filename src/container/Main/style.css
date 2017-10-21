@@ -5,34 +5,11 @@ body {
   line-height: 1.5;
 }
 body, .app {
-  /* background-color: #c54e49; */
-  /* background-image: linear-gradient(180deg, #cf163d, #ffb042 ); */
-  background: linear-gradient(135deg,#7c0053 0,#fa3373 100%);
-
-  /* cf163d
-  ffb042
-  f1598a
-  9b0067*/
+  background-color: #7c0053;
+  /* background: linear-gradient(135deg,#7c0053 0,#fa3373 100%); */
 }
 
 /* main page */
-/* .route-wrapper {
-  position: relative;
-}
-
-.route-wrapper > div {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
-.route-wrapper > div > .list-books .open-search {
-  position: fixed;
-  right: 25px;
-  bottom: 25px;
-} */
 
 .bookshelf-title {
   text-align: right;
@@ -149,9 +126,10 @@ body, .app {
 }
 .book-title {
   margin-top: 10px;
+  color: white;
 }
 .book-authors {
-  color: white;
+  color: black;
 }
 
 .book-top {
@@ -168,7 +146,7 @@ body, .app {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #60ac5d;
+  background: yellow;
   background-image: url('../../core/assets/icons/arrow-drop-down.svg');
   background-repeat: no-repeat;
   background-position: center;
