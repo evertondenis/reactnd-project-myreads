@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Route, Link } from 'react-router-dom'
 import * as BooksAPI from '../../core/provider/BooksAPI'
+import { Shelfs } from '../../core/constants/shelfs';
 
 import Preloader from '../../components/Preloader'
 import Title from '../../components/Title'
@@ -23,6 +24,8 @@ class Main extends Component {
 
     this.renderListBooks = this.renderListBooks.bind(this)
     this.changeBookShelf = this.changeBookShelf.bind(this)
+
+    this.renderShelfs = this.renderShelfs.bind(this)
   }
 
   componentDidMount() {
@@ -44,15 +47,27 @@ class Main extends Component {
 
   renderListBooks() {
     BooksAPI.getAll().then((books) => {
-      this.setState({
-        showloader: false,
-        currentlyReading: books.filter(book => book.shelf === 'currentlyReading'),
-        wantToRead: books.filter(book => book.shelf === 'wantToRead'),
-        read: books.filter(book => book.shelf === 'read')
-      })
+      this.setState({ books, showloader: false })
     })
   }
 
+  renderShelfs() {
+    const listShelf = Shelfs.reduce((acc, shelf) => {
+      const type = (Object.keys(shelf)).join()
+
+      acc[type] = this.state.books.filter((item, index) => item.shelf === type)
+      return acc
+    }, [])
+
+    return Shelfs.map((shelf, index) => (
+      <Shelf
+        key={Object.keys(shelf)}
+        title={shelf[(Object.keys(shelf)).toString()]}
+        books={listShelf[(Object.keys(shelf))]}
+        updateShelf={this.changeBookShelf}
+      />
+    ))
+  }
 
   render() {
     return (
@@ -63,27 +78,14 @@ class Main extends Component {
 
         <Route exact path='/' render={() => (
           <div className="list-books">
+
             <Preloader condition={this.state.showloader} />
 
             <Title text="MyReads" />
 
             <div className="list-books-content">
               <div>
-                <Shelf
-                  title="Currently Reading"
-                  books={this.state.currentlyReading}
-                  updateShelf={this.changeBookShelf}
-                />
-                <Shelf
-                  title="Want to Read"
-                  books={this.state.wantToRead}
-                  updateShelf={this.changeBookShelf}
-                />
-                <Shelf
-                  title="Read"
-                  books={this.state.read}
-                  updateShelf={this.changeBookShelf}
-                />
+                {this.renderShelfs()}
               </div>
             </div>
             <div className="open-search">
