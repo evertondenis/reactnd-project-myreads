@@ -7,6 +7,7 @@ import Preloader from '../../components/Preloader'
 import Title from '../../components/Title'
 import Shelf from '../../components/Shelf'
 import Search from '../../container/Search'
+import About from '../../container/About'
 
 import './style.css'
 
@@ -72,6 +73,7 @@ class Main extends Component {
   render() {
     return (
       <div className="app">
+
         <Route path='/search' render={() => (
           <Search loader={this.state.showloader} updateShelf={this.changeBookShelf} />
         )}/>
@@ -80,6 +82,7 @@ class Main extends Component {
           <div className="list-books">
 
             <Preloader condition={this.state.showloader} />
+
 
             <Title text="MyReads" />
 
@@ -91,8 +94,12 @@ class Main extends Component {
             <div className="open-search">
               <Link to='/search'>Add a book</Link>
             </div>
+
+            <Link to='/about'>About</Link>
           </div>
         )}/>
+
+        <Route path='/about' component={About}/>
       </div>
     )
   }
