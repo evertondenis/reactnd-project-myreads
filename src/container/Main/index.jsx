@@ -17,15 +17,11 @@ class Main extends Component {
 
     this.state = {
       books: [],
-      currentlyReading: [],
-      wantToRead: [],
-      read: [],
       showloader: true
     }
 
     this.renderListBooks = this.renderListBooks.bind(this)
     this.changeBookShelf = this.changeBookShelf.bind(this)
-
     this.renderShelfs = this.renderShelfs.bind(this)
   }
 
@@ -83,13 +79,10 @@ class Main extends Component {
 
             <Preloader condition={this.state.showloader} />
 
-
             <Title text="MyReads" />
 
             <div className="list-books-content">
-              <div>
-                {this.renderShelfs()}
-              </div>
+              {this.renderShelfs()}
             </div>
             <div className="open-search">
               <Link to='/search'>Add a book</Link>
