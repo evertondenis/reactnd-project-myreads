@@ -87,8 +87,6 @@ class Main extends Component {
             <div className="open-search">
               <Link to='/search'>Add a book</Link>
             </div>
-
-            <Link to='/about'>About</Link>
           </div>
         )}/>
 
