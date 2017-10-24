@@ -9,7 +9,7 @@ const Title = (props) => {
   return (
     <StyledTitle>
       <h1>{text}</h1>
-      <Link to='/about' className="btn-about">about me ;)</Link>
+      <Link to='/about' className="btn-about">about 🙂</Link>
     </StyledTitle>
   )
 }
