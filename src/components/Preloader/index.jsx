@@ -24,3 +24,9 @@ Preloader.propTypes = {
 }
 
 export default Preloader
+
+
+/* jest-styled-components
+react-test-renderer
+enzyme
+enzyme-to-json */

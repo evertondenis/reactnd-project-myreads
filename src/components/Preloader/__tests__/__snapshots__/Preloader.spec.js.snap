@@ -1,0 +1,7 @@
+exports[`test Test snapshot 1`] = `
+Array [
+  "javascript",
+  "react",
+  "node",
+]
+`;
