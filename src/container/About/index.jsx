@@ -1,24 +1,44 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import arrowback from './assets/arrow-back.svg'
 
 const StyledAbout = styled.div`
   padding: 30px;
   color: white;
+  font-size: 1.1em;
   font-family: T4c, georgia, serif;
+  font-weight: bold;
   line-height: 1;
+
+  h1 { display: inline; color: black }
+
   a {
-    color: white;
+    color: black;
     text-decoration: underline;
+
+    :hover { text-decoration: none; }
+  }
+
+  .btn-back {
+    display: block;
+    width: 25px;
+    height: 53px;
+    background-image: url('${arrowback}');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 28px;
+    font-size: 0;
   }
 `
 
 const About = () => (
   <StyledAbout>
-    <h1>Everton Denis</h1>
-    <p>Frontend Developer</p>
+    <p>Hi! my name is <h1>Everton Denis</h1>.</p>
+    <p>I'm a Frontend Developer, or Web Developer, or Fullstack Developer...whatever...</p>
+    <p>the important is; My passion is to dev solutions for complex problems!</p>
     <p><a href="mailto:evertondenis@gmail.com">Get in touch</a> or find me on <a href="https://github.com/evertondenis">GitHub</a>, <a href="https://twitter.com/evertondenis">Twitter</a> and <a href="https://www.linkedin.com/in/evertondenis/">LinkedIn</a>.</p>
-    <Link className='close-search' to='/'>Back</Link>
+    <Link className='btn-back' to='/'>Back</Link>
   </StyledAbout>
 )
 
