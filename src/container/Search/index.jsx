@@ -14,6 +14,7 @@ class Search extends Component {
     super(props)
 
     this.state = {
+      currentBooks: [],
       listBooks: [],
       showloader: false,
       noResults: false
@@ -23,14 +24,30 @@ class Search extends Component {
   }
 
   searchBooks(query) {
+    const { currentBooks } = this.props
+
     if (query === '') {
       this.setState({ noResults: false, listBooks: [] })
     } else {
       this.setState({ showloader: true })
       BooksAPI.search(query).then((books) => {
-        const listBooks = books
-        const noResults = listBooks.length ? false : true
-        this.setState({ noResults , showloader: false, listBooks })
+        const results = books
+        const noResults = results.length ? false : true
+
+        this.setState({ noResults , showloader: false })
+
+        if (!noResults) {
+          const listBooks = results.map(item => {
+            const inShelf = currentBooks.findIndex(book => book.id === item.id)
+            if (inShelf > -1) {
+              return currentBooks[inShelf]
+            }
+            return item
+          })
+
+          this.setState({ listBooks })
+        }
+
       })
     }
   }
