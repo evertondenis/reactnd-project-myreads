@@ -20,8 +20,16 @@ export const StyledTitle = styled.div`
     position: absolute;
     right: 0;
     padding: 10px;
+    border-radius: 5px 0 0 5px;
+    background-color: tomato;
     font-size: 0.8em;
-    color: white;
+    color: black;
     text-decoration: none;
+    transition: all 0.2s ease-out;
+
+    :hover {
+      background-color: yellow;
+      transition: all 0.2s ease-out;
+    }
   }
 `
