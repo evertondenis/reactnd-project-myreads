@@ -7,7 +7,7 @@ import noimage from './assets/no-image.png'
 const Book = (props) => {
   const { id, image, title, author, shelf, updateShelf } = props
 
-  let thumb = image && image !== 'no-image'
+  const thumb = image && image !== 'no-image'
               ? '#7c0053 url(' + image + ')'
               : 'black url(' + noimage + ') no-repeat 50%'
 

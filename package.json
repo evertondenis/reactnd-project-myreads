@@ -8,15 +8,12 @@
     "throttle-debounce": "^1.0.1"
   },
   "devDependencies": {
-    "@kadira/storybook": "^2.21.0",
     "react-scripts": "0.9.5"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 9009 -c storybook",
-    "build-storybook": "build-storybook -c storybook"
+    "eject": "react-scripts eject"
   }
 }
