@@ -29,6 +29,6 @@ export const StyledShelf = styled.div`
   }
 
   @media (min-width: 600px) {
-    padding: 0 20px 40px;
+    padding: 0 20px 20px;
   }
 `

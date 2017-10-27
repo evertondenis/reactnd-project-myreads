@@ -11,10 +11,10 @@ const StyledAbout = styled.div`
   font-weight: bold;
   line-height: 1;
 
-  h1 { display: inline; color: black }
+  .my-name { display: inline; color: yellow }
 
   a {
-    color: black;
+    color: yellow;
     text-decoration: underline;
 
     :hover { text-decoration: none; }
@@ -34,7 +34,7 @@ const StyledAbout = styled.div`
 
 const About = () => (
   <StyledAbout>
-    <p>Hi! my name is <h1>Everton Denis</h1>.</p>
+    <p>Hi! my name is <span className="my-name">Everton Denis</span>.</p>
     <p>I'm a Frontend Developer, or Web Developer, or Fullstack Developer...whatever...</p>
     <p>the important is; My passion is to dev solutions for complex problems!</p>
     <p><a href="mailto:evertondenis@gmail.com">Get in touch</a> or find me on <a href="https://github.com/evertondenis">GitHub</a>, <a href="https://twitter.com/evertondenis">Twitter</a> and <a href="https://www.linkedin.com/in/evertondenis/">LinkedIn</a>.</p>

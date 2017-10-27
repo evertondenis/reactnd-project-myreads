@@ -30,9 +30,6 @@ class Main extends Component {
   }
 
   changeBookShelf(book, shelf) {
-    console.log('ID: ', book)
-    console.log('Shelf: ', shelf.target.value)
-
     const newShelf = shelf.target.value
     this.setState({ showloader: true })
 
