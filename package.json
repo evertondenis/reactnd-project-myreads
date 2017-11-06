@@ -1,4 +1,8 @@
 {
+  "name": "reactnd-project-myreads",
+  "authors": [
+    "Everton Denis R. S."
+  ],
   "homepage": "https://evertondenis.github.io/reactnd-project-myreads/",
   "dependencies": {
     "prop-types": "^15.5.8",
