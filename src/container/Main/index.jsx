@@ -67,11 +67,11 @@ class Main extends Component {
     return (
       <div className="app">
 
-        <Route path='/search' render={() => (
+        <Route path="/search" render={() => (
           <Search loader={this.state.showloader} currentBooks={this.state.books} updateShelf={this.changeBookShelf} />
         )}/>
 
-        <Route exact path='/' render={() => (
+        <Route exact path="/" render={() => (
           <div className="list-books">
 
             <Preloader condition={this.state.showloader} />
@@ -82,12 +82,12 @@ class Main extends Component {
               {this.renderShelfs()}
             </div>
             <div className="open-search">
-              <Link to='/search'>Add a book</Link>
+              <Link to="/search">Add a book</Link>
             </div>
           </div>
         )}/>
 
-        <Route path='/about' component={About}/>
+        <Route path="/about" component={About}/>
       </div>
     )
   }
